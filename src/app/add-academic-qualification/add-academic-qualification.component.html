@@ -1,0 +1,122 @@
+<div class="container">
+    <h1>Add Academic Qualification</h1>
+
+    <div [hidden]="submitted" style="width: 400px; padding: 20px;">
+        <form (ngSubmit)="onSubmit()">
+
+            <!---------------- input field---------->
+            <div class="form-group">
+                <label for="id">Id</label>
+                <input type="number" class="form-control" id="id" required [(ngModel)]="academic.id" name="id"
+                    #id="ngModel">
+            </div>
+
+            <!-- validation -->
+            <div *ngIf="id.invalid && (id.dirty || id.touched)" class="alert alert-danger">
+                <div *ngIf="id.errors.required">
+                    id is required.
+                </div>
+            </div>
+
+            <!------------ Drop down -------------->
+            <div class="form-group">
+                <label for="institute">Institute</label>
+                <select name="institute" class="form-control" id="institute" required [(ngModel)]="academic.institute"
+                    name="institute" #institute="ngModel" FormValidation.usernameShouldBeValid
+                    aria-placeholder="select institute">
+                    <option value="colombo">Colombo</option>
+                    <option value="kandy">Kandy</option>
+                </select>
+            </div>
+
+            <!-- validation not work -->
+            <div *ngIf="institute.invalid && (institute.dirty || institute.touched)" class="alert alert-danger">
+                <div *ngIf="institute.errors.required">
+                    Name is required.
+                </div>
+                <div *ngIf="institute.usernameShouldBeValid">
+                    Remove spaces
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" required [(ngModel)]="academic.date" name="date"
+                    #date="ngModel">
+            </div>
+
+            <!-- validation -->
+            <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+                <div *ngIf="date.errors.required">
+                    date is required.
+                </div>
+            </div>
+
+            <!------------ toggle buttons -------------->
+            <div class="container">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button"
+                        data-toggle="dropdown">Toggle this Dropdown
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+                    </ul>
+                </div><br>
+            </div>
+
+            <!----------- add table button---------->
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-success" (click)="addTable()">Add table</button>
+            </div>
+
+            <div>
+                <table class="table table-bordered" id=table>
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Institute</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <!---------- submit button ------->
+            <button type="submit" class="btn btn-success">Submit</button>
+
+        </form>
+
+    </div>
+</div>
+
+<!--
+<script>
+    var list1 = [];
+    var list2 = [];
+    var list3 = [];
+    var list4 = [];
+
+    var n = 1;
+    var x = 0;
+
+    function addTable() {
+        var rown = document.getElementById('table');
+        var newRow = rown.insertRow(n);
+
+        list1[x] = document.getElementById("id").value;
+        list1[x] = document.getElementById("institute").value;
+
+        var cel1 = newRow.insertCell(0);
+        var cel2 = newRow.insertCell(1);
+
+        cel1.innserHTML = list1[x];
+        cel2.innserHTML = list1[x];
+
+        n++;
+        x++;
+    }
+</script>
+-->
